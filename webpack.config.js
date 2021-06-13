@@ -1,6 +1,9 @@
 const currentTask = process.env.npm_lifecycle_event
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
+
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const config = {
   entry: './app/app.js',
@@ -14,7 +17,7 @@ const config = {
     contentBase: path.resolve(__dirname, 'dist'),
     hot: true,
   },
-  plugins: [],
+  plugins: [new HtmlWebpackPlugin({ template: './app/index.html' })],
   module: {
     rules: [
       {
@@ -41,7 +44,8 @@ if (currentTask === 'build') {
   config.plugins.push(
     new MiniCSSExtractPlugin({
       filename: 'main.[hash].css',
-    })
+    }),
+    new CleanWebpackPlugin()
   )
 }
 
