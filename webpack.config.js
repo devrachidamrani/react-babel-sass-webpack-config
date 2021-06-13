@@ -19,6 +19,7 @@ const config = {
     hot: true,
   },
   plugins: [new HtmlWebpackPlugin({ template: './app/index.html' })],
+  devtool: 'eval-cheap-source-map',
   module: {
     rules: [
       {
@@ -31,7 +32,13 @@ const config = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
+            presets: [
+              [
+                '@babel/preset-env',
+                { useBuiltIns: 'usage', corejs: 3, targets: 'defaults' },
+              ],
+              '@babel/preset-react',
+            ],
           },
         },
       },
