@@ -4,6 +4,7 @@ const path = require('path')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const WebpackManifestPlugin = require('webpack-manifest-plugin')
 
 const config = {
   entry: './app/app.js',
@@ -45,7 +46,8 @@ if (currentTask === 'build') {
     new MiniCSSExtractPlugin({
       filename: 'main.[hash].css',
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new WebpackManifestPlugin()
   )
 }
 
