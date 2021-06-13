@@ -1,6 +1,7 @@
 import './styles/main.scss'
 import React, { useEffect, useState, useRef } from 'react'
 import { render } from 'react-dom'
+import ProgressBar from './components/ProgressBar'
 
 function App() {
   const [score, setScore] = useState(0)
@@ -110,29 +111,6 @@ function App() {
         </div>
       </div>
     </>
-  )
-}
-
-function ProgressBar(props) {
-  return (
-    <div className='progress'>
-      <div className='boxes'>
-        <div className='box'></div>
-        <div className='box'></div>
-        <div className='box'></div>
-        <div className='box'></div>
-        <div className='box'></div>
-        <div className='box'></div>
-        <div className='box'></div>
-        <div className='box'></div>
-        <div className='box'></div>
-        <div className='box'></div>
-      </div>
-      <div
-        className='progress-inner'
-        style={{ transform: `scaleX(${props.score / 10})` }}
-      ></div>
-    </div>
   )
 }
 
