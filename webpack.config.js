@@ -1,17 +1,18 @@
+const currentTask = process.env.npm_lifecycle_event
 const path = require('path')
 
-module.exports = {
+const config = {
   entry: './app/app.js',
   output: {
     filename: 'myBundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  mode: 'development',
   devServer: {
     port: 8080,
     contentBase: path.resolve(__dirname, 'dist'),
     hot: true,
   },
-  mode: 'development',
   module: {
     rules: [
       {
@@ -31,3 +32,9 @@ module.exports = {
     ],
   },
 }
+
+if (currentTask === 'build') {
+  config.mode = 'production'
+}
+
+module.exports = config
